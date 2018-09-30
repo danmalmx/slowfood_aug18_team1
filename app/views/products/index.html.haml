@@ -1,13 +1,16 @@
-= render 'partials/navbar'
-= render 'partials/welcome'
--@categories.each do |category|
-    .container.mx-auto
-    .table
-        %p= category.name
-        -category.products.each do |product|
-            .container.mx-auto
-            .table
-                %p= product.name
-                %p= product.description
-                %p= product.price 
-                = add_to_cart(product, 1, "Add to cart") if user_signed_in? 
+.container.mx-auto
+    = render 'partials/navbar'
+    = render 'partials/welcome'
+    -@categories.each do |category|
+        .table
+        .max-w-md
+            %h3.text-center= category.name 
+            %br/
+            -category.products.each do |product|
+                .table
+                .max-w-md.rounded.overflow-hidden.shadow-lg
+                    %h6= product.name
+                    %p= product.description
+                    %p= product.price 
+                .max-w-md.rounded
+                    = add_to_cart(product, 1, "Add to cart") if user_signed_in? 
